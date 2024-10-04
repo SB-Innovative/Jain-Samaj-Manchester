@@ -1,0 +1,45 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
+export const storeID = async (id) => {
+    try {
+      await AsyncStorage.setItem('@user_id', id);
+    } catch (error) {
+      console.error('Error storing id', error);
+    }
+  };
+
+// Save token
+export const storeToken = async (token) => {
+  try {
+    await AsyncStorage.setItem('@user_token', token);
+  } catch (error) {
+    console.error('Error storing token', error);
+  }
+};
+
+// Retrieve token
+const getToken = async () => {
+  try {
+    return await AsyncStorage.getItem('@user_token');
+  } catch (error) {
+    console.error('Error retrieving token', error);
+  }
+};
+
+// Remove token
+export const removeToken = async () => {
+  try {
+    await AsyncStorage.removeItem('@user_token');
+  } catch (error) {
+    console.error('Error removing token', error);
+  }
+};
+export const clearAll = async() => {
+    try{
+        await AsyncStorage.clear();
+    }catch(error){
+        console.error('Error clear', error);
+    }
+}

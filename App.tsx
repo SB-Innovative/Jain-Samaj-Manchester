@@ -1,117 +1,187 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+//@ts-nocheck
+import React, { useEffect, useState, useRef } from 'react';
+import { View, ActivityIndicator, StyleSheet, LogBox, Platform, PermissionsAndroid, Alert } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+// import { SafeAreaProvider } from 'react-native-safe-area-context';
+import LoginScreenHello from './src/screens/LoginScreenHello';
+import ForgetPasswordScreen from './src/screens/ForgotPassword';
+import OTPVerificationScreen from './src/screens/OTPScreen';
+import ResetPasswordScreen from './src/screens/ResetPassword';
+import NotificationScreen from './src/screens/Notification';
+import MenuScreen from './src/screens/MenuScreen';
+import ListDetails from './src/screens/ListDetails';
+import List from './src/screens/List';
+import MyFamilyList from './src/screens/MyFamilyList';
+import MyFamilyDetails from './src/screens/MyFamilyDetails';
+import colors from './src/styles/colors';
+import { getData, storeData } from './src/storage/storage';
+import { STORAGE_KEYS } from './src/storage/constant';
+import Settings from './src/screens/Settings';
+import ListFamilyMembers from './src/screens/ListFamilyMembers';
+import NotificationDetails from './src/screens/NotificationDetails';
+import messaging from '@react-native-firebase/messaging';
+import firebase from '@react-native-firebase/app';
+import { requestUserPermission, NotificationServices } from './src/services/notificationServices';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const Stack = createStackNavigator();
+const navigationRef = React.createRef();
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+
+// const requestNotificationPermission = async () => {
+//   if (Platform.OS === 'android') {
+//     try {
+//       const granted = await PermissionsAndroid.request(
+//         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+//         {
+//           title: 'Notification Permission',
+//           message: 'This app needs access to send you notifications.',
+//           buttonPositive: 'OK',
+//           buttonNegative: 'Cancel',
+//         }
+//       );
+//       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//         console.log('Notification permission granted');
+//       } else {
+//         console.log('Notification permission denied');
+//       }
+//     } catch (err) {
+//       console.warn(err);
+//     }
+//   }
+// };
+
+const App = () => {
+  const [token, setToken] = useState(null);
+  const [isLoginVerified, setLoginVerified] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    requestUserPermission();
+    NotificationServices()
+  }, []);
+
+
+
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      try {
+        const storedToken = await getData(STORAGE_KEYS.USER_TOKEN);
+        const loginVerified = await getData(STORAGE_KEYS.IS_LOGIN_VERIFIED);
+
+        console.log("Fetched token: ", storedToken);
+        console.log("Fetched isLoginVerified: ", loginVerified);
+
+        setToken(storedToken);
+        setLoginVerified(loginVerified === 'true');
+      } catch (error) {
+        console.error('Error fetching auth data:', error);
+      } finally {
+        setLoading(false);
+        SplashScreen.hide();
+      }
+    };
+
+    initializeAuth();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.orange} />
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    // <SafeAreaProvider>
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator initialRouteName={token && isLoginVerified ? "MenuScreen" : "LoginScreen"}>
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreenHello}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgetPasswordScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="OTPVerification"
+          component={OTPVerificationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ResetPassword"
+          component={ResetPasswordScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Notification"
+          component={NotificationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MenuScreen"
+          component={MenuScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ListDetails"
+          component={ListDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="List"
+          component={List}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MyFamilyList"
+          component={MyFamilyList}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MyFamilyDetails"
+          component={MyFamilyDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ListFamilyMembers"
+          component={ListFamilyMembers}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NotificationDetails"
+          component={NotificationDetails}
+          options={{ headerShown: false }}
+        />
+
+      </Stack.Navigator>
+    </NavigationContainer>
+    // </SafeAreaProvider>
   );
-}
+};
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
