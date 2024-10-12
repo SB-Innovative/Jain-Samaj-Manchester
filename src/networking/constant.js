@@ -1,6 +1,6 @@
 // constants.js
 
-export const BASE_URL = 'https://jainsamajmanchester.org/Api/';
+export const BASE_URL = 'http://13.201.105.85/jainuk/Api/';
 export const BASIC = '#$sbinfotecc@#testing%';
 export const AUTH_KEY = 'eco@#$%Rece)*&^pt%testing';
 

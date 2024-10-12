@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, ScrollView, Image, ActivityIndicator, Alert, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ScrollView, Image, ActivityIndicator, Alert ,TouchableOpacity,ImageBackground} from 'react-native';
 import axios from 'axios';
 import { API_ENDPOINTS, BASE_URL, BASIC, AUTH_KEY } from '../networking/constant';
 import { STORAGE_KEYS } from '../storage/constant';
@@ -8,7 +8,7 @@ import colors from '../styles/colors';
 import TextBold from '../components/atom/TextBold';
 import TextRegular from '../components/atom/TextRegular';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
+import CarouselSlider from '../components/molecule/CarouselSlider';
 
 // Function to flatten the data
 const flattenData = (data) =>
@@ -64,9 +64,9 @@ const MyFamilyList = ({ navigation }) => {
         setLoading(false);
 
         if (response.data.status === 200) {
-          console.log("FAMILY : " + JSON.stringify(response.data.data))
+          console.log("FAMILY : "+ JSON.stringify(response.data.data))
           const flatList = flattenData(response.data.data);
-          console.log("flatList : " + JSON.stringify(flatList))
+          console.log("flatList : "+ JSON.stringify(flatList))
           const grouped = groupByTreeRow(flatList, setHeadRelation);
           setGroupedData(grouped);
         } else {
@@ -81,28 +81,27 @@ const MyFamilyList = ({ navigation }) => {
     fetchFamilyData();
   }, []);
 
-  const renderRow = ({ item, position }) => (
-
+  const renderRow = ({ item , position}) => (
+  
     <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
-      {item.map((person, index, position) => (
-        <TouchableOpacity style={styles.item} onPress={async () => {
-          const ID = person.id //|| await getData(STORAGE_KEYS.USER_MEMBER_ID)
-          console.log("ID : ", ID);
-          const IS_HEAD = person.is_head + ""
-          navigation.navigate('MyFamilyDetails', { ID: ID, IS_HEAD: IS_HEAD })
-        }} >
-          <View key={person.id} style={styles.item}>
-            <View style={styles.horizontalView}>
-              <View style={[styles.horizontalLine, { opacity: (index == 0) ? 0 : 1 }]} />
-              <View style={[styles.horizontalLine2, { opacity: (index === item.length - 1) ? 0 : 1 }]} />
-            </View>
-            <View style={[styles.verticalLine, { opacity: (person.is_head == 1) ? 0 : 1 }]} />
-
-            <View style={styles.itemBox}>
-              <TextBold text={person.name} style={styles.title} />
-              <TextRegular text={`(${person.relation || headRelation})`} style={styles.relation} />
-            </View>
+      {item.map((person,index,position )=> (
+        <TouchableOpacity style={styles.item}  onPress={async () => {
+        const ID = person.id //|| await getData(STORAGE_KEYS.USER_MEMBER_ID)
+          console.log("ID : ",ID);
+          const IS_HEAD = person.is_head+""
+          navigation.navigate('MyFamilyDetails',{ID:ID,IS_HEAD:IS_HEAD})}} >
+        <View key={person.id} style={styles.item}>
+         <View style={styles.horizontalView}>
+          <View style={[styles.horizontalLine, {opacity :( index == 0) ? 0 :1}]}/>
+          <View style={[styles.horizontalLine2,{opacity : (index === item.length - 1) ? 0 :1}]}/>
           </View>
+          <View style={[styles.verticalLine, {opacity :( person.is_head == 1) ? 0 :1}]}/>
+         
+         <View style={styles.itemBox}>
+          <TextBold text={person.name} style={styles.title} />
+          <TextRegular text={`(${person.relation || headRelation})`} style={styles.relation} />
+          </View>
+        </View>
         </TouchableOpacity>
       ))}
     </ScrollView>
@@ -110,45 +109,40 @@ const MyFamilyList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={[styles.backArrow, { zIndex: 1 }]} onPress={() => navigation.goBack()}>
+       <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
         <Icon name="chevron-back-outline" size={25} color='#fff' />
-      </TouchableOpacity>
+        </TouchableOpacity>
       <View style={styles.header}>
-        <View style={styles.imageTop}>
-          <Carousel
-            sliderData={[
-              { sliderImage: require('../../assets/menu_girl.png') },
-              { sliderImage: require('../../assets/home-banner2.png') },
-            ]}
-          />
+      <View  style={styles.imageTop}>
+        <CarouselSlider/>
         </View>
         {/* <Image source={require('../../assets/menu_girl.png')} style={styles.imageTop} /> */}
       </View>
       <View style={styles.footer}>
-        <View style={styles.listButton}>
-          <View style={styles.iconContainer}>
-            <Image
-              source={require('../../assets/heart.png')}
-              style={styles.icon}
-            />
-
-          </View>
-          <Text style={styles.listButtonText}>My Family</Text>
+      <View style={styles.listButton}>
+      <View style={styles.iconContainer}>
+          <Image
+          source={require('../../assets/heart.png')}
+          style={styles.icon}
+        />
+      
+        </View>
+        <Text style={styles.listButtonText}>My Family</Text>
         </View>
         <ImageBackground
-          source={require('../../assets/new-tree-3.png')}
+          source={require('../../assets/new-tree-3.png')} 
           style={styles.imageBackground}
-          resizeMode="stretch"
+          resizeMode="stretch" 
         >
-          {loading ? (
-            <ActivityIndicator style={styles.overlay} size="large" color={colors.orange} />
-          ) : (
-            <FlatList
-              data={groupedData}
-              renderItem={renderRow}
-              keyExtractor={(item, index) => index.toString()}
-            />
-          )}
+        {loading ? (
+          <ActivityIndicator style={styles.overlay} size="large" color={colors.orange} />
+        ) : (
+          <FlatList
+            data={groupedData}
+            renderItem={renderRow}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
         </ImageBackground>
       </View>
     </View>
@@ -183,49 +177,49 @@ const styles = StyleSheet.create({
   imageTop: {
     width: '95%',
     height: '80%',
-    margin: 20,
-    borderRadius: 10
+    margin:20,
+    borderRadius:10
 
   },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
 
-
+  
   },
   item: {
     flex: 1,
     flexDirection: 'column',
     paddingBottom: 10,
     paddingHorizontal: 0,
-    borderTopWidth: 0,
+    borderTopWidth:0,
     borderRadius: 0,
     justifyContent: 'center',
     alignItems: 'center',
+    
 
-
   },
-  verticalLine: {
-    width: 1,
-    height: 0,
-    // backgroundColor:colors.background
+  verticalLine:{
+    width:1,
+    height:0,
+   // backgroundColor:colors.background
   },
-  horizontalView: {
-    flex: 1,
-    flexDirection: 'row',
-    height: 1,
-    justifyContent: 'space-evenly',
+  horizontalView:{
+    flex:1,
+    flexDirection:'row',
+    height:1,
+    justifyContent:'space-evenly',
   },
-  horizontalLine: {
-    flex: 0.5,
-    height: 1,
-    opacity: 1,
+  horizontalLine:{
+    flex:0.5,
+    height:1,
+    opacity:1,
     //backgroundColor:colors.background
   },
-  horizontalLine2: {
-    flex: 0.5,
-    height: 1,
-    opacity: 1,
+  horizontalLine2:{
+    flex:0.5,
+    height:1,
+   opacity:1,
     //backgroundColor:colors.background
   },
   title: {
@@ -245,7 +239,7 @@ const styles = StyleSheet.create({
   },
   listButton: {
     flexDirection: 'row',
-    height: 50,
+    height:50,
     alignItems: 'center',
     padding: 0,
     borderRadius: 5,
@@ -253,14 +247,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   iconContainer: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
     width: 30,
     height: 30,
     borderRadius: 5,
     backgroundColor: colors.background,
-    padding: 5,
+    padding:5,
   },
   icon: {
     width: 20,
@@ -274,29 +268,29 @@ const styles = StyleSheet.create({
     color: colors.primary,
     marginLeft: 5,
     fontWeight: 'bold',
-    fontSize: 18,
-    marginStart: 10
+    fontSize:18,
+    marginStart:10
   },
   imageBackground: {
-    flex: 1,
-    width: '100%'
+    flex:1,
+    width:'100%'
   },
   itemBox: {
-    flex: 1,
-    minWidth: 70,
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: '#fffcd6',
-    borderRadius: 10,
-    justifyContent: 'center'
+    flex:1,
+    minWidth:70,
+    flexDirection:'column',
+    alignItems:'center',
+    padding:5,
+    backgroundColor:'#fffcd6',
+    borderRadius:10,
+    justifyContent:'center'
   },
   backArrow: {
     position: 'absolute',
-    top: -5,
-    left: 10,
+    top:-5,
+    left:10,
   },
-
+  
 });
 
 export default MyFamilyList;

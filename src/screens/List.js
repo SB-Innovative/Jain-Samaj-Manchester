@@ -6,7 +6,7 @@ import { BASE_URL,BASIC,API_ENDPOINTS,AUTH_KEY } from '../networking/constant';
 import { getData } from '../storage/storage';
 import axios from 'axios';
 import { STORAGE_KEYS } from '../storage/constant';
-import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
+import CarouselSlider from '../components/molecule/CarouselSlider';
 
 const dummyData = [
   { name: 'JOHN', age: 'R', mobile: 'M' },
@@ -140,12 +140,7 @@ const List = ({navigation}) => {
         
       <View style={styles.header}>
         <View  style={styles.imageTop}>
-        <Carousel
-        sliderData = {[
-          { sliderImage: require('../../assets/menu_girl.png') },
-          { sliderImage: require('../../assets/home-banner2.png') },
-        ]}
-      />
+        <CarouselSlider/>
         </View>
       
       {/* <Image
