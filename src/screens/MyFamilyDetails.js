@@ -9,7 +9,7 @@ import axios from 'axios';
 import { STORAGE_KEYS } from '../storage/constant';
 import colors from '../styles/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CarouselSlider from '../components/molecule/CarouselSlider';
+import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
 
 const MyFamilyDetails = ({navigation,route}) => {
   let ID =  route.params.ID
@@ -316,7 +316,9 @@ const MyFamilyDetails = ({navigation,route}) => {
         </TouchableOpacity>
     <View style={styles.container}>
     <View  style={styles.image}>
-        <CarouselSlider/>
+    <CarouselSlider
+        item={require('../../assets/menu_girl.png')}
+      />
         </View>
      {/* <Image style={styles.image} source={require("../../assets/list_bg.png")}/> */}
        <Text style={styles.title}>Jain Samaj Manchester Directory </Text>

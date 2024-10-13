@@ -10,7 +10,7 @@ import { getData, storeData } from '../storage/storage';
 import { CommonActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-let isButtonDisabled = true;
+let isButtonDisabled = false;
 const OTPVerificationScreen = ({ navigation, route }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,6 +21,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
   const [otp, setOtp] = useState('');
 
   const handleOtpFilled = (code) => {
+    console.log("otp24", code)
     setOtp(code);
     if (code.length === 6) {
       isButtonDisabled = false;
@@ -28,6 +29,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
   };
 
   const handleOtpChanged = (code) => {
+    console.log("otp25", code)
     setOtp(code);
     if (code.length < 6) {
       isButtonDisabled = true;
@@ -95,7 +97,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
         .then(response => {
           setLoading(false);
           console.log(response.data)
-          if (response.data?.status === 200) {
+          if (response.data.status === 200) {
             if (SCREEN === STORAGE_KEYS.FROM_LOGIN) {
               storeData(STORAGE_KEYS.IS_LOGIN_VERIFIED, "true");
               navigation.dispatch(
@@ -105,11 +107,11 @@ const OTPVerificationScreen = ({ navigation, route }) => {
                 })
               );
             } else if(SCREEN === STORAGE_KEYS.FROM_FORGOT_PASSWORD){
-              const OTP_ID = response.data?.data?.otp_id+""
+              const OTP_ID = response.data.data.otp_id+""
               navigation.navigate('ResetPassword',{SCREEN,FIELD_PARAM})
             }
             else if(SCREEN === STORAGE_KEYS.FROM_RESET_PASSWORD){
-              const OTP_ID = response.data?.data?.otp_id+""
+              const OTP_ID = response.data.data.otp_id+""
               navigation.navigate('ResetPassword',{SCREEN,FIELD_PARAM})
             }
           } else {

@@ -12,7 +12,7 @@ import LabelValues from '../components/molecule/LabelValues';
 import TextBold from '../components/atom/TextBold';
 import Icon from 'react-native-vector-icons/Ionicons'
 import TextRegular from '../components/atom/TextRegular';
-import CarouselSlider from '../components/molecule/CarouselSlider';
+import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
 
 
 const ListDetails = ({navigation,route}) => {
@@ -220,9 +220,11 @@ const ListDetails = ({navigation,route}) => {
        <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
        <Icon name="chevron-back-outline" size={25} color='#000' />
         </TouchableOpacity>
-        <View  style={styles.image}>
-        <CarouselSlider/>
-        </View>
+        {/* <View  style={styles.image}> */}
+        <CarouselSlider
+        item={require('../../assets/menu_girl.png')}
+      />
+        {/* </View> */}
         <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
      {/* <Image style={styles.image} source={require("../../assets/list_bg.png")}/> */}
      
@@ -289,7 +291,7 @@ const styles = StyleSheet.create({
   image: {
     flex:1,
     width:'100%',
-    height:200,
+    height:300,
   },
   
   

@@ -6,7 +6,7 @@ import { BASE_URL,BASIC,API_ENDPOINTS,AUTH_KEY } from '../networking/constant';
 import { getData } from '../storage/storage';
 import axios from 'axios';
 import { STORAGE_KEYS } from '../storage/constant';
-import CarouselSlider from '../components/molecule/CarouselSlider';
+import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
 
 const dummyData = [
   { name: 'JOHN', age: 'R', mobile: 'M' },
@@ -139,9 +139,11 @@ const List = ({navigation}) => {
         </TouchableOpacity>
         
       <View style={styles.header}>
-        <View  style={styles.imageTop}>
-        <CarouselSlider/>
-        </View>
+        {/* <View  style={styles.imageTop}> */}
+        <CarouselSlider
+        item={require('../../assets/menu_girl.png')}
+      />
+        {/* </View> */}
       
       {/* <Image
           source={require('../../assets/menu_girl.png')} 

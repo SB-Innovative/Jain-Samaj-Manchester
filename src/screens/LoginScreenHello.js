@@ -30,6 +30,7 @@ const LoginScreenHello = ({ navigation }) => {
     password: password,
     fcm_token: await getData(STORAGE_KEYS.FCM_TOKEN)
   };
+  console.warn("fcm token", params)
   const headers = {
     'Basic': `${BASIC}`,
     'Auth-Key': `${AUTH_KEY}`,
@@ -51,7 +52,9 @@ const LoginScreenHello = ({ navigation }) => {
         storeData(STORAGE_KEYS.USER_MOBILE,response.data.data.mobile+"")
         storeData(STORAGE_KEYS.USER_TOKEN,response.data.data.token+"")
 
-        if(response.data.data.active == "1"){
+        console.warn("api success", response.data.data.id, response.data.data)
+
+        if(response.data.data.status == "1"){
           if(await getData(STORAGE_KEYS.IS_LOGIN_VERIFIED) == "true"){
             navigation.dispatch(
               CommonActions.reset({

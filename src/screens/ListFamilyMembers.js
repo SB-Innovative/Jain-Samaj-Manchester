@@ -12,7 +12,7 @@ import TextBold from '../components/atom/TextBold';
 import LabelValues from '../components/molecule/LabelValues';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TextRegular from '../components/atom/TextRegular';
-import CarouselSlider from '../components/molecule/CarouselSlider';
+import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
 
 
 const ListFamilyMembers = ({navigation,route}) => {
@@ -184,7 +184,9 @@ const ListFamilyMembers = ({navigation,route}) => {
        <Icon name="chevron-back-outline" size={25} color='#000' />
         </TouchableOpacity>
         <View  style={styles.image}>
-        <CarouselSlider/>
+        <CarouselSlider
+        item={require('../../assets/menu_girl.png')}
+      />
         </View>
      {/* <Image style={styles.image} source={require("../../assets/list_bg.png")}/> */}
        <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
