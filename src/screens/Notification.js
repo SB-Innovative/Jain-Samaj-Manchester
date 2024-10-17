@@ -62,7 +62,8 @@ const NotificationScreen = ({ navigation }) => {
         setData(uniqueData);
         setGroupedData(groupByCreatedDate(uniqueData));
       } else {
-        Alert.alert('Error', response.data.message);
+        console.log(response.data);
+        Alert.alert('No Data', response.data.data.message);
         setHasMore(false);  // Prevent further fetching if the API signals an error
       }
     } catch (error) {

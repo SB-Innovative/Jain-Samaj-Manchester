@@ -9,6 +9,7 @@ import { STORAGE_KEYS } from '../storage/constant';
 import { getData, storeData } from '../storage/storage';
 import { CommonActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 let isButtonDisabled = true;
 const OTPVerificationScreen = ({ navigation, route }) => {
@@ -106,6 +107,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
               );
             } else if(SCREEN === STORAGE_KEYS.FROM_FORGOT_PASSWORD){
               const OTP_ID = response.data.data.otp_id+""
+              console.log(FIELD_PARAM,"Test Param")
               navigation.navigate('ResetPassword',{SCREEN,FIELD_PARAM})
             }
             else if(SCREEN === STORAGE_KEYS.FROM_RESET_PASSWORD){
@@ -127,11 +129,14 @@ const OTPVerificationScreen = ({ navigation, route }) => {
   };
 
   return (
+
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent} 
+      enableOnAndroid={true}
+      extraScrollHeight={20}>
         <View style={styles.container}>
         <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={30} color='#fff' />
+        <Icon name="chevron-back-outline" size={30} color='#000' />
         </TouchableOpacity>
           {loading ? (
             <ActivityIndicator style={styles.overlay} size="large" color={colors.orange} />
@@ -150,6 +155,9 @@ const OTPVerificationScreen = ({ navigation, route }) => {
               <Text style={styles.title}>VERIFY ACCOUNT!</Text>
               <Text style={styles.subtitle}>OTP Sent on {email}</Text>
               <Text style={styles.startLeftText}>Enter OTP</Text>
+             
+            
+
               <OTPInputView
                 style={styles.otpContainer}
                 pinCount={6}
@@ -159,6 +167,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
                 codeInputFieldStyle={styles.otpInput}
                 codeInputHighlightStyle={styles.otpInputHighlight}
               />
+              
               <Text style={styles.resendText}>Didn't receive the code?</Text>
               <TouchableOpacity style={styles.resendButton} onPress={handleResendOtp}>
                 <Text style={styles.resendButtonText}>Resend OTP</Text>
@@ -169,7 +178,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
             </View>
           </LinearGradient>
         </View>
-      </ScrollView>
+        </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

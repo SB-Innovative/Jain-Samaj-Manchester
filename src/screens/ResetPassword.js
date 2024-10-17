@@ -45,7 +45,7 @@ const callResetPassword = async () => {
 }
 
 const callForgotPassword = async () => {
-  console.error('callForgotPassword');
+  console.error('callForgotPassword',FIELD_PARAM);
   try {
     const url = `${BASE_URL}${API_ENDPOINTS.FORGOT_PASSWORD}`;
    
@@ -61,6 +61,7 @@ const callForgotPassword = async () => {
       }
     });
 
+    console.log(response.data);
     if (response.data.status === 200) {
       navigation.dispatch(
         CommonActions.reset({
@@ -97,7 +98,7 @@ const callForgotPassword = async () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
         <TouchableOpacity style={[styles.backArrow,{zIndex:2}]} onPress={() => navigation.goBack()}>
-        <Icon1 name="chevron-back-outline" size={30} color='#fff' />
+        <Icon1 name="chevron-back-outline" size={30} color='#000' />
         </TouchableOpacity>
           <View style={styles.header}>
         

@@ -27,9 +27,12 @@ const ForgetPasswordScreen = ({navigation,route}) => {
         console.log('SCREEN FORGOT :', FIELD_PARAM);
         if (SCREEN === STORAGE_KEYS.FROM_LOGIN) {
           //const userEmail = await getData(STORAGE_KEYS.USER_EMAIL);
+          console.log(FIELD_PARAM, "Param Test in if");
           setEmail(FIELD_PARAM);
         }else{
-        setEmail(FIELD_PARAM);
+          
+        
+          setEmail(FIELD_PARAM);
         }
       } catch (error) {
         console.error('Error fetching email:', error);
@@ -46,6 +49,8 @@ const ForgetPasswordScreen = ({navigation,route}) => {
 
   const handleSendOTP = async () => {
     // Validate inputs
+    const FIELD_PARAM = email;
+    console.log(FIELD_PARAM,"Param Test nw");
     if (email === '' ) {
       Alert.alert('Validation Error', 'Email cannot be empty');
       return;
