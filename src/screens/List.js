@@ -6,7 +6,8 @@ import { BASE_URL,BASIC,API_ENDPOINTS,AUTH_KEY } from '../networking/constant';
 import { getData } from '../storage/storage';
 import axios from 'axios';
 import { STORAGE_KEYS } from '../storage/constant';
-import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
+import CarouselSlider from '../components/molecule/CarouselSlider';
+import ButtonCircular from '../components/atom/ButtonCircular';
 
 const dummyData = [
   { name: 'JOHN', age: 'R', mobile: 'M' },
@@ -46,6 +47,9 @@ const List = ({navigation}) => {
     });
   };
   
+  const handleOk = () => {
+    navigation.goBack(); 
+  };
   
   useEffect(() => {
     const fetchData = async () => {
@@ -134,16 +138,15 @@ const List = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-       <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={25} color='#000000' />
+      
+        <View style={styles.header}>
+        <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
+       <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
         
-      <View style={styles.header}>
-        {/* <View  style={styles.imageTop}> */}
-        <CarouselSlider
-        item={require('../../assets/menu_girl.png')}
-      />
-        {/* </View> */}
+        <View  style={styles.imageTop}>
+        <CarouselSlider/>
+        </View>
       
       {/* <Image
           source={require('../../assets/menu_girl.png')} 
@@ -152,18 +155,32 @@ const List = ({navigation}) => {
         {/* <Image source={{ uri: 'https://path-to-your-image.jpg' }} style={styles.image} /> */}
         <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
       </View>
+      <View style={styles.buttonContainer}>
+  <ButtonCircular 
+  text = {'Back'}
+  style={styles.buttonText}
+  handleClick={handleOk}
+  linearGradient={styles.linearGradient}
+  />
+   </View>
       <View style={styles.footer}>
       <View style={styles.listButton}>
+      
       <View style={styles.iconContainer}>
           <Image
           source={require('../../assets/menu_doc.png')}
           style={styles.iconLong}
         />
-      
+
+    
         </View>
-        <Text style={styles.listButtonText}>Directory</Text>
+        
+          <Text style={styles.listButtonText}>Directory</Text>
+
+         
         </View>
-      
+ 
+
       {/* <TouchableOpacity style={styles.listButton}>
         <Icon name="list-outline" size={20} color="white" />
         <Text style={styles.listButtonText}>List</Text>
@@ -282,6 +299,7 @@ const styles = StyleSheet.create({
     color: colors.textcolor,
     fontFamily:'ManropeExtraBold',
     padding:10,
+    fontWeight: 'bold',
    
   },
   searchContainer: {
@@ -372,8 +390,24 @@ const styles = StyleSheet.create({
   },
   backArrow: {
     position: 'absolute',
-    top:10,
+    top:50,
     left:10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 5,
+    marginBottom:5,
+    alignItems:'flex-start',
+  },
+  buttonText: {
+    justifyContent:'center',
+    alignItems:'center',
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  linearGradient: {
+    width:'40%',
   },
 });
 

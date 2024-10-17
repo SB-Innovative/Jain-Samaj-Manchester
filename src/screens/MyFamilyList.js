@@ -8,7 +8,9 @@ import colors from '../styles/colors';
 import TextBold from '../components/atom/TextBold';
 import TextRegular from '../components/atom/TextRegular';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
+import CarouselSlider from '../components/molecule/CarouselSlider';
+import ButtonCircular from '../components/atom/ButtonCircular';
+
 
 // Function to flatten the data
 const flattenData = (data) =>
@@ -39,6 +41,8 @@ const groupByTreeRow = (flatList, setHeadRelation) => {
     .sort((a, b) => a - b)
     .map(key => groupedByTreeRow[key]);
 };
+
+
 
 const MyFamilyList = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -81,6 +85,10 @@ const MyFamilyList = ({ navigation }) => {
     fetchFamilyData();
   }, []);
 
+  const handleOk = () => {
+    navigation.goBack(); 
+  };
+  
   const renderRow = ({ item, position }) => (
 
     <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
@@ -111,16 +119,24 @@ const MyFamilyList = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={[styles.backArrow, { zIndex: 1 }]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={25} color='#fff' />
+        <Icon name="chevron-back-outline" size={30} color='#fff' />
       </TouchableOpacity>
       <View style={styles.header}>
         <View style={styles.imageTop}>
           <CarouselSlider
-            item={require('../../assets/menu_girl.png')}
+            
           />
         </View>
         {/* <Image source={require('../../assets/menu_girl.png')} style={styles.imageTop} /> */}
       </View>
+      <View style={styles.buttonContainer}>
+  <ButtonCircular 
+  text = {'Back'}
+  style={styles.buttonText}
+  handleClick={handleOk}
+  linearGradient={styles.linearGradient}
+  />
+   </View>
       <View style={styles.footer}>
         <View style={styles.listButton}>
           <View style={styles.iconContainer}>
@@ -159,7 +175,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    backgroundColor: colors.background,
+    
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomLeftRadius: 30,
@@ -178,10 +194,11 @@ const styles = StyleSheet.create({
   //   borderRadius: 10,
   // },
   imageTop: {
-    width: '95%',
-    height: '80%',
+    width: '100%',
+    height: '100%',
     margin: 20,
-    borderRadius: 10
+    borderRadius: 10,
+    
 
   },
   scrollContainer: {
@@ -228,6 +245,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     color: colors.background,
+    fontWeight: 'bold',
   },
   relation: {
     fontSize: 10,
@@ -286,12 +304,28 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#fffcd6',
     borderRadius: 10,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   backArrow: {
     position: 'absolute',
-    top: -5,
+    top: 50,
     left: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 5,
+    marginBottom:5,
+    alignItems:'flex-start',
+  },
+  buttonText: {
+    justifyContent:'center',
+    alignItems:'center',
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  linearGradient: {
+    width:'40%',
   },
 
 });

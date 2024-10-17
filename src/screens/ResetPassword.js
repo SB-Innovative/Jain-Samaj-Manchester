@@ -97,7 +97,7 @@ const callForgotPassword = async () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
         <TouchableOpacity style={[styles.backArrow,{zIndex:2}]} onPress={() => navigation.goBack()}>
-        <Icon1 name="chevron-back-outline" size={25} color='#000' />
+        <Icon1 name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
           <View style={styles.header}>
         
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   },
   backArrow: {
     position: 'absolute',
-    top:10,
+    top:50,
     left:10,
   },
 });

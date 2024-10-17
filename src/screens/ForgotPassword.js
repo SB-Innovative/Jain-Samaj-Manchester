@@ -80,7 +80,7 @@ axios.post(url, formData, {
             <View style={styles.container}>
           <View style={styles.header}>
           <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={25} color='#fff' />
+        <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
             <Image
           source={require('../../assets/user-icon.png')}
@@ -168,7 +168,7 @@ alignItems: 'center',
   },
   backArrow: {
     position: 'absolute',
-    top:5,
+    top:50,
     left:10,
   },
 });

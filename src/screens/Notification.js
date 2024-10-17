@@ -144,8 +144,8 @@ const NotificationScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back-outline" size={25} color='#fff' />
+      <TouchableOpacity style={[styles.backArrow]} onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Notification</Text>
       </View>
@@ -185,16 +185,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 53,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
     backgroundColor: colors.background,
+    
   },
   headerTitle: {
     fontSize: 18,
     marginLeft: 16,
     color: 'white',
     fontFamily: 'ManropeBold',
+    alignItems: 'center',
+    paddingLeft: 115,
+    paddingTop: 15,
+    
   },
   contentContainer: {
     paddingVertical: 16,
@@ -276,6 +281,11 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#D9D9D9',
     marginLeft: 10,
+  },
+  backArrow: {
+    position: 'absolute',
+    top:50,
+    left:10,
   },
 });
 

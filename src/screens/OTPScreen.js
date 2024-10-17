@@ -10,7 +10,7 @@ import { getData, storeData } from '../storage/storage';
 import { CommonActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-let isButtonDisabled = false;
+let isButtonDisabled = true;
 const OTPVerificationScreen = ({ navigation, route }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,6 @@ const OTPVerificationScreen = ({ navigation, route }) => {
   const [otp, setOtp] = useState('');
 
   const handleOtpFilled = (code) => {
-    console.log("otp24", code)
     setOtp(code);
     if (code.length === 6) {
       isButtonDisabled = false;
@@ -29,7 +28,6 @@ const OTPVerificationScreen = ({ navigation, route }) => {
   };
 
   const handleOtpChanged = (code) => {
-    console.log("otp25", code)
     setOtp(code);
     if (code.length < 6) {
       isButtonDisabled = true;
@@ -63,8 +61,8 @@ const OTPVerificationScreen = ({ navigation, route }) => {
     })
       .then(response => {
         setLoading(false);
-        if (response.data?.status === 200) {
-          const newOtpID = response.data?.data?.otp_id;
+        if (response.data.status === 200) {
+          const newOtpID = response.data.data.otp_id;
           setOtpID(newOtpID);
           Alert.alert('Success', 'OTP has been resent.');
         } else {
@@ -133,7 +131,7 @@ const OTPVerificationScreen = ({ navigation, route }) => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
         <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={25} color='#000' />
+        <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
           {loading ? (
             <ActivityIndicator style={styles.overlay} size="large" color={colors.orange} />
@@ -310,7 +308,7 @@ const styles = StyleSheet.create({
   },
   backArrow: {
     position: 'absolute',
-    top:10,
+    top:50,
     left:10,
   },
 });

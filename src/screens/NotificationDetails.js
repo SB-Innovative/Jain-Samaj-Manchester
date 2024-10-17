@@ -6,6 +6,7 @@ import LabelValues from '../components/molecule/LabelValues';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TextBold from '../components/atom/TextBold';
 import TextRegular from '../components/atom/TextRegular';
+import CarouselSlider from '../components/molecule/CarouselSlider';
 
 const NotificationDetails = ({ navigation, route }) => {
   const { ID, TITLE, DESCRIPTION } = route.params;
@@ -18,9 +19,9 @@ const NotificationDetails = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={[styles.backArrow, { zIndex: 1 }]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={25} color='#000' />
+        <Icon name="chevron-back-outline" size={30} color='#fff' />
       </TouchableOpacity>
-      <Image style={styles.image} source={require("../../assets/list_bg.png")} />
+      <CarouselSlider/>
       <Text style={styles.title}>Jain Samaj Manchester Directory</Text>
       <View style={styles.subContainer}>
         <View style={styles.itemContainer}>
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    top: 140,
+    top: 195,
     left: 20,
     textAlign: 'center',
   },
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   },
   backArrow: {
     position: 'absolute',
-    top: 10,
+    top: 50,
     left: 10,
   },
   contentStyle: {

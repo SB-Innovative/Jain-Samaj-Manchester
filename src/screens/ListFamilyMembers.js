@@ -12,7 +12,7 @@ import TextBold from '../components/atom/TextBold';
 import LabelValues from '../components/molecule/LabelValues';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TextRegular from '../components/atom/TextRegular';
-import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
+import CarouselSlider from '../components/molecule/CarouselSlider';
 
 
 const ListFamilyMembers = ({navigation,route}) => {
@@ -181,7 +181,7 @@ const ListFamilyMembers = ({navigation,route}) => {
   return (
     <View style={styles.container}>
        <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
-       <Icon name="chevron-back-outline" size={25} color='#000' />
+       <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
         <View  style={styles.image}>
         <CarouselSlider
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingHorizontal:15,
     paddingVertical:10,
-    top:140,
+    top:195,
     left:20,
     right:20,
     textAlign: 'center' 
@@ -323,6 +323,7 @@ nameCenter: {
   justifyContent:'center',
   alignItems:'center',
   color: colors.background,
+  fontWeight: 'bold',
 },
 textBold: {
   flexDirection:'row',
@@ -341,7 +342,7 @@ textRegular: {
 },
 backArrow: {
   position: 'absolute',
-  top:10,
+  top:50,
   left:10,
   elevation:10
 },

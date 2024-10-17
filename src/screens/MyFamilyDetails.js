@@ -9,7 +9,7 @@ import axios from 'axios';
 import { STORAGE_KEYS } from '../storage/constant';
 import colors from '../styles/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CarouselSlider from '../components/molecule/Carousel/NewCarousel';
+import CarouselSlider from '../components/molecule/CarouselSlider';
 
 const MyFamilyDetails = ({navigation,route}) => {
   let ID =  route.params.ID
@@ -312,7 +312,7 @@ const MyFamilyDetails = ({navigation,route}) => {
   return (
      <ScrollView  contentContainerStyle={styles.scrollContainer}>
       <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back-outline" size={25} color='#000' />
+        <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
     <View style={styles.container}>
     <View  style={styles.image}>
@@ -534,7 +534,7 @@ overlay: {
 },
 backArrow: {
   position: 'absolute',
-  top:10,
+  top:50,
   left:10,
 },
 });
