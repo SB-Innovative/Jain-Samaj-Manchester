@@ -321,7 +321,7 @@ const MyFamilyDetails = ({navigation,route}) => {
       />
         </View>
      {/* <Image style={styles.image} source={require("../../assets/list_bg.png")}/> */}
-       <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
+       <Text style={styles.title} maxFontSizeMultiplier={1.2}>Jain Samaj Manchester Directory </Text>
      <View style={styles.subContainer}>
      {loading ? (
           <ActivityIndicator style={styles.overlay} size="large" color={colors.orange} />
@@ -331,6 +331,7 @@ const MyFamilyDetails = ({navigation,route}) => {
       
    
       <TextInputField
+        maxFontSizeMultiplier={1.0}
         label="First Name"
         value={firstName}
         editable={true}
@@ -436,12 +437,14 @@ const MyFamilyDetails = ({navigation,route}) => {
   <ButtonCircular 
   text = {'Back'}
   style={styles.buttonText}
+  maxFontSizeMultiplier={1.0}
   handleClick={handleOK}
   />
 
 <ButtonCircular 
   text = {'Update'}
   style={styles.buttonText}
+  maxFontSizeMultiplier={1.0}
   handleClick={handleUpdate}
   /> 
  </View>
@@ -478,7 +481,7 @@ const styles = StyleSheet.create({
   
   
   button: {
-    width:'30%',
+    width:'50%',
     backgroundColor: '#FF6600',
     padding: 10,
     borderRadius: 50,
@@ -488,6 +491,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 12,
   },
   title: {
     position:'absolute',

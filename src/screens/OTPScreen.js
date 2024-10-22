@@ -152,9 +152,9 @@ const OTPVerificationScreen = ({ navigation, route }) => {
             end={{ x: 1, y: 0 }}
           >
             <View style={styles.footer}>
-              <Text style={styles.title}>VERIFY ACCOUNT!</Text>
-              <Text style={styles.subtitle}>OTP Sent on {email}</Text>
-              <Text style={styles.startLeftText}>Enter OTP</Text>
+              <Text style={styles.title} maxFontSizeMultiplier={1.2}>VERIFY ACCOUNT!</Text>
+              <Text style={styles.subtitle} maxFontSizeMultiplier={1.2}>OTP Sent on {email}</Text>
+              <Text style={styles.startLeftText} maxFontSizeMultiplier={1.2}>Enter OTP</Text>
              
             
 
@@ -168,9 +168,9 @@ const OTPVerificationScreen = ({ navigation, route }) => {
                 codeInputHighlightStyle={styles.otpInputHighlight}
               />
               
-              <Text style={styles.resendText}>Didn't receive the code?</Text>
+              <Text style={styles.resendText} maxFontSizeMultiplier={1.2}>Didn't receive the code?</Text>
               <TouchableOpacity style={styles.resendButton} onPress={handleResendOtp}>
-                <Text style={styles.resendButtonText}>Resend OTP</Text>
+                <Text style={styles.resendButtonText} maxFontSizeMultiplier={1.2}>Resend OTP</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
                 <Image source={require('../../assets/btn_continue.png')} style={styles.continueButtonImage} />

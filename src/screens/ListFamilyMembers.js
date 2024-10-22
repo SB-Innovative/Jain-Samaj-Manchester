@@ -93,25 +93,25 @@ const ListFamilyMembers = ({navigation,route}) => {
   const renderItem = ({ item }) => (
     <View style={styles.itemCoontainer}>
       <View style={styles.nameCenter}>
-        <TextBold text={item.name +" "+ item.lastname} style={styles.nameCenter}/>
+        <TextBold text={item.name +" "+ item.lastname} style={styles.nameCenter} maxFontSizeMultiplier={1.0}/>
       </View>
       {item.email ? (<View style={styles.labelcontainer}>
-      <TextBold text={"Email : "} style={styles.textBold}/>
+      <TextBold text={"Email : "} style={styles.textBold} maxFontSizeMultiplier={1.0}/>
       <TouchableOpacity style={styles.regularUnderline} onPress={() => openEmail(item.email)}>
-      <TextRegular text={item.email} style={styles.regularUnderline}/>
+      <TextRegular text={item.email} style={styles.regularUnderline} maxFontSizeMultiplier={1.0}/>
       </TouchableOpacity>
     </View>): null}
       {/* {item.email ? ( <LabelValues label={"Email : "} value={item.email} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null} */}
-      {item.relation ? (<LabelValues label={"Relation with Head: "} value={item.relation} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
-      {item.maritial_status ? (<LabelValues label={"Marital Status : "} value={item.maritial_status} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
+      {item.relation ? (<LabelValues label={"Relation with Head: "} value={item.relation} labelStyle={styles.textBold} valueStyle={styles.textRegular} maxFontSizeMultiplier={1.0}/> ): null}
+      {item.maritial_status ? (<LabelValues label={"Marital Status : "} value={item.maritial_status} labelStyle={styles.textBold} valueStyle={styles.textRegular} maxFontSizeMultiplier={1.0}/> ): null}
       {/* {item.dob ? (<LabelValues label={"DOB : "} value={item.dob} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null} */}
-      {item.occupation ? (<LabelValues label={"Occupation : "} value={item.occupation} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
-      {item.address1 ? (<LabelValues label={"Address : "} value={item.address1+" "+ item.address2+" "+ item.town} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
+      {item.occupation ? (<LabelValues label={"Occupation : "} value={item.occupation} labelStyle={styles.textBold} valueStyle={styles.textRegular} maxFontSizeMultiplier={1.0}/> ): null}
+      {item.address1 ? (<LabelValues label={"Address : "} value={item.address1+" "+ item.address2+" "+ item.town} labelStyle={styles.textBold} valueStyle={styles.textRegular} maxFontSizeMultiplier={1.0}/> ): null}
       {/* {item.mobile ? (<LabelValues label={"Mobile No : "} value={item.mobile} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null} */}
       {item.mobile ? (<View style={styles.labelcontainer}>
-      <TextBold text={"Mobile No : "} style={styles.textBold}/>
+      <TextBold text={"Mobile No : "} style={styles.textBold} maxFontSizeMultiplier={1.0}/>
       <TouchableOpacity style={styles.regularUnderline} onPress={() => openDialPad(item.mobile)}>
-      <TextRegular text={item.mobile} style={styles.regularUnderline}/>
+      <TextRegular text={item.mobile} style={styles.regularUnderline} maxFontSizeMultiplier={1.0}/>
       </TouchableOpacity>
     </View>
     ): null}
@@ -179,7 +179,7 @@ const ListFamilyMembers = ({navigation,route}) => {
     return <View style={styles.separator} />;
   };
   return (
-    <View style={styles.container}>
+    <View style={styles.container} maxFontSizeMultiplier={1.0}>
        <TouchableOpacity style={[styles.backArrow,{zIndex:1}]} onPress={() => navigation.goBack()}>
        <Icon name="chevron-back-outline" size={30} color='#fff' />
         </TouchableOpacity>
@@ -189,10 +189,10 @@ const ListFamilyMembers = ({navigation,route}) => {
       />
         </View>
      {/* <Image style={styles.image} source={require("../../assets/list_bg.png")}/> */}
-       <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
-     <View style={styles.subContainer}>
-     <View style={styles.nameCenter}>
-        <TextBold text={"All Family members of "+NAME} style={styles.nameCenter}/>
+       <Text style={styles.title} maxFontSizeMultiplier={1.2}>Jain Samaj Manchester Directory </Text>
+     <View style={styles.subContainer} maxFontSizeMultiplier={1.0}>
+     <View style={styles.nameCenter} maxFontSizeMultiplier={1.0}>
+        <TextBold text={"All Family members of "+NAME} style={styles.nameCenter} maxFontSizeMultiplier={1.0}/>
       </View>
      {loading ? (
           <ActivityIndicator style={styles.overlay} size="large" color={colors.orange} />
@@ -202,6 +202,7 @@ const ListFamilyMembers = ({navigation,route}) => {
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         style={styles.table}
+        maxFontSizeMultiplier={1.0}
          ItemSeparatorComponent={ItemSeparator}
         
       />
@@ -212,6 +213,7 @@ const ListFamilyMembers = ({navigation,route}) => {
   <ButtonCircular 
   text = {'Back'}
   style={styles.buttonText}
+  maxFontSizeMultiplier={1.0}
   handleClick={handleSubmit}
   />
 
@@ -319,7 +321,7 @@ overlay: {
 },
 nameCenter: {
   flexDirection:'row',
-  fontSize: 18,
+  fontSize: 16,
   justifyContent:'center',
   alignItems:'center',
   color: colors.background,

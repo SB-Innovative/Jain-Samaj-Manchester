@@ -131,22 +131,22 @@ const ListDetails = ({navigation,route}) => {
     <View style={styles.itemCoontainer}>
      
        <View style={styles.nameCenter}>
-        <TextBold text={item.name +" "+ item.lastname} style={styles.nameCenter}/>
+        <TextBold text={item.name +" "+ item.lastname} style={styles.nameCenter}  maxFontSizeMultiplier={1.0}/>
       </View>
-      {item.email ? (<View style={styles.labelcontainer}>
-      <TextBold text={"Email : "} style={styles.textBold}/>
+      {item.email ? (<View style={styles.labelcontainer}  maxFontSizeMultiplier={1.0}>
+      <TextBold text={"Email : "} style={styles.textBold}  maxFontSizeMultiplier={1.0}/>
       <TouchableOpacity style={styles.regularUnderline} onPress={() => openEmail(item.email)}>
-      <TextRegular text={item.email} style={styles.regularUnderline}/>
+      <TextRegular text={item.email} style={styles.regularUnderline}  maxFontSizeMultiplier={1.0}/>
       </TouchableOpacity>
     </View>): null}
        {/* {item.email ? ( <LabelValues label={"Email : "} value={item.email} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null} */}
-      {item.maritial_status ? (<LabelValues label={"Marital Status : "} value={item.maritial_status} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
-      {item.occupation ? (<LabelValues label={"Occupation : "} value={item.occupation} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
-      {item.address1 ? (<LabelValues label={"Address : "} value={item.address1+" "+ item.address2+" "+ item.town} labelStyle={styles.textBold} valueStyle={styles.textRegular} /> ): null}
+      {item.maritial_status ? (<LabelValues label={"Marital Status : "} value={item.maritial_status} labelStyle={styles.textBold} valueStyle={styles.textRegular}  maxFontSizeMultiplier={1.0}/> ): null}
+      {item.occupation ? (<LabelValues label={"Occupation : "} value={item.occupation} labelStyle={styles.textBold} valueStyle={styles.textRegular}  maxFontSizeMultiplier={1.0}/> ): null}
+      {item.address1 ? (<LabelValues label={"Address : "} value={item.address1+" "+ item.address2+" "+ item.town} labelStyle={styles.textBold} valueStyle={styles.textRegular}  maxFontSizeMultiplier={1.0} /> ): null}
       {item.mobile ? (<View style={styles.labelcontainer}>
-      <TextBold text={"Mobile No : "} style={styles.textBold}/>
+      <TextBold text={"Mobile No : "} style={styles.textBold}  maxFontSizeMultiplier={1.0}/>
       <TouchableOpacity style={styles.regularUnderline} onPress={() => openDialPad(item.mobile)}>
-      <TextRegular text={item.mobile} style={styles.regularUnderline}/>
+      <TextRegular text={item.mobile} style={styles.regularUnderline}  maxFontSizeMultiplier={1.0}/>
       </TouchableOpacity>
     </View>
     ): null}
@@ -226,7 +226,7 @@ const ListDetails = ({navigation,route}) => {
       />
     
         {/* </View> */}
-        <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
+        <Text style={styles.title}  maxFontSizeMultiplier={1.2}>Jain Samaj Manchester Directory </Text>
      {/* <Image style={styles.image} source={require("../../assets/list_bg.png")}/> */}
      
      <View style={styles.subContainer}>
@@ -244,17 +244,21 @@ const ListDetails = ({navigation,route}) => {
         )}
       </View>
      
-<View style={styles.buttonContainer}>
+<View style={styles.buttonContainer} >
   <ButtonCircular 
   text = {'Back'}
+  maxFontSizeMultiplier={1.0}
   style={styles.buttonText}
+  
   handleClick={handleOk}
   linearGradient={styles.linearGradient}
   />
 
 <ButtonCircular 
   text = {'All Family Members'}
+  maxFontSizeMultiplier={1.0}
   style={styles.buttonText}
+  
   handleClick={handleNext}
   linearGradient={styles.linearGradient}
   />
@@ -288,7 +292,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 0,
-    marginBottom:10,
+    marginBottom:30,
   },
   image: {
     flex:1,
@@ -326,7 +330,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingHorizontal:15,
     paddingVertical:10,
-    top:195,
+    top:205,
     left:20,
     right:20,
     textAlign: 'center' 
@@ -334,12 +338,13 @@ const styles = StyleSheet.create({
   image: {
     flex:1,
     width:'100%',
-    height:120,
+    height:60,
   },
   subContainer:{
     width:'100%',
-    height:'67%',
-    padding:20
+    height:'60%',
+    padding:10,
+    paddingTop:30,
   },
 separator: {
   height: 1,
@@ -381,7 +386,7 @@ itemCoontainer: {
   borderColor: colors.background,
   borderWidth:2,
   borderRadius:10,
-  padding:10
+  padding:20
 },
 linearGradient: {
   width:'40%',

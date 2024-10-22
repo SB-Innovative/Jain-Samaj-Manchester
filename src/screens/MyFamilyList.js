@@ -99,7 +99,7 @@ const MyFamilyList = ({ navigation }) => {
           const IS_HEAD = person.is_head + ""
           navigation.navigate('MyFamilyDetails', { ID: ID, IS_HEAD: IS_HEAD })
         }} >
-          <View key={person.id} style={styles.item}>
+          <View key={person.id} style={styles.item} maxFontSizeMultiplier={1.0}>
             <View style={styles.horizontalView}>
               <View style={[styles.horizontalLine, { opacity: (index == 0) ? 0 : 1 }]} />
               <View style={[styles.horizontalLine2, { opacity: (index === item.length - 1) ? 0 : 1 }]} />
@@ -107,8 +107,8 @@ const MyFamilyList = ({ navigation }) => {
             <View style={[styles.verticalLine, { opacity: (person.is_head == 1) ? 0 : 1 }]} />
 
             <View style={styles.itemBox}>
-              <TextBold text={person.name} style={styles.title} />
-              <TextRegular text={`(${person.relation || headRelation})`} style={styles.relation} />
+              <TextBold text={person.name} maxFontSizeMultiplier={1.0} style={styles.title} />
+              <TextRegular text={`(${person.relation || headRelation})`} style={styles.relation} maxFontSizeMultiplier={1.0} />
             </View>
           </View>
         </TouchableOpacity>
@@ -129,6 +129,9 @@ const MyFamilyList = ({ navigation }) => {
         </View>
         {/* <Image source={require('../../assets/menu_girl.png')} style={styles.imageTop} /> */}
       </View>
+      <View>
+      <Text style={styles.listNoteText}  maxFontSizeMultiplier={1.0}>* Tap on name to edit details.</Text>
+      </View>
       <View style={styles.buttonContainer}>
   <ButtonCircular 
   text = {'Back'}
@@ -146,11 +149,12 @@ const MyFamilyList = ({ navigation }) => {
             />
 
           </View>
-          <Text style={styles.listButtonText}>My Family</Text>
+          <Text style={styles.listButtonText} maxFontSizeMultiplier={1.2}>My Family</Text>
         </View>
         <ImageBackground
           source={require('../../assets/new-tree-3.png')}
           style={styles.imageBackground}
+          maxFontSizeMultiplier={1.2}
           resizeMode="stretch"
         >
           {loading ? (
@@ -291,6 +295,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     marginStart: 10
+  },
+  listNoteText: {
+    color: colors.primary,
+    marginRight: 10,
+    fontSize: 18,
+    marginStart: 10,
+    textAlign: "right",
+    paddingBottom: 10,
   },
   imageBackground: {
     flex: 1,

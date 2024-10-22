@@ -8,6 +8,7 @@ import { getData, storeData } from '../storage/storage';
 import { STORAGE_KEYS } from '../storage/constant';
 import { BASE_URL,API_ENDPOINTS, AUTH_KEY,BASIC } from '../networking/constant';
 import { CommonActions } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const LoginScreenHello = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -95,7 +96,9 @@ const LoginScreenHello = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <ScrollView style={styles.container}>
+      <KeyboardAwareScrollView style={styles.container}
+      enableOnAndroid={true}
+      extraScrollHeight={20}>
         <View style={styles.scrollContainer}>
           <View style={styles.topContainer}>
             <Image
@@ -104,13 +107,14 @@ const LoginScreenHello = ({ navigation }) => {
             />
           </View>
           <View style={styles.formContainer}>
-            <Text style={styles.headerText}>Jai Jinendra</Text>
-            <Text style={styles.subHeaderText}>Sign in to your Account</Text>
+            <Text style={styles.headerText} maxFontSizeMultiplier={1.2}>Jai Jinendra</Text>
+            <Text style={styles.subHeaderText} maxFontSizeMultiplier={1.2}>Sign in to your Account</Text>
             <View style={styles.inputContainer}>
               <Icon name="user-large" size={14} color={colors.background} />
               <TextInput
                 placeholder="Username"
                 style={styles.input}
+                maxFontSizeMultiplier={1.2}
                 placeholderTextColor="#AAAAAA"
                 value={username}
                 color="#000000"
@@ -122,6 +126,7 @@ const LoginScreenHello = ({ navigation }) => {
               <TextInput
                 placeholder="Password"
                 style={styles.input}
+                maxFontSizeMultiplier={1.2}
                 placeholderTextColor="#AAAAAA"
                 secureTextEntry={true}
                 value={password}
@@ -131,7 +136,7 @@ const LoginScreenHello = ({ navigation }) => {
             </View>
             <TouchableOpacity onPress={() => { const SCREEN = STORAGE_KEYS.FROM_FORGOT_PASSWORD
             navigation.navigate('ForgotPassword',{SCREEN});}}>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+              <Text style={styles.forgotPasswordText} maxFontSizeMultiplier={1.2}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>
 
@@ -141,11 +146,11 @@ const LoginScreenHello = ({ navigation }) => {
                 source={require('../../assets/login_btn.png')}
                 style={styles.loginButtonContainer}
               />
-              <Text style={styles.loginButtonText}>{loading ? 'Loading...' : 'Login'}</Text>
+              <Text style={styles.loginButtonText} maxFontSizeMultiplier={1.2}>{loading ? 'Loading...' : 'Login'}</Text>
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
@@ -197,6 +202,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: '#FF5B1F',
     fontFamily: 'ManropeExtraBold',
+    textAlign: 'center',
   },
   subHeaderText: {
     fontSize: 10,

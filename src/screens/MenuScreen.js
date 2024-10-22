@@ -109,7 +109,7 @@ const MenuScreen = ({navigation}) => {
         loop={true}
       />
     
-        <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
+        <Text style={styles.title} maxFontSizeMultiplier={1.2}>Jain Samaj Manchester Directory </Text>
       <TouchableOpacity onPress={() => navigation.navigate('List')} style={[styles.button, { marginTop: '100%' }]} >
       <View style={styles.iconContainer}>
           <Image
@@ -118,7 +118,7 @@ const MenuScreen = ({navigation}) => {
         />
         </View>
         <View flex={1} flexDirection={'row'} justifyContent={'center'} alignItems={'center'} >
-        <Text style={styles.buttonText}>Directory</Text>
+        <Text style={styles.buttonText} maxFontSizeMultiplier={1.2}>Directory</Text>
         </View>
        
       </TouchableOpacity>
@@ -132,7 +132,7 @@ const MenuScreen = ({navigation}) => {
         </View>
         <View flex={1} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
 
-        <Text style={styles.buttonText}>My Family</Text>
+        <Text style={styles.buttonText} maxFontSizeMultiplier={1.2}>My Family</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('Settings')}>
@@ -143,7 +143,7 @@ const MenuScreen = ({navigation}) => {
         />
         </View>
         <View flex={1} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
-        <Text style={styles.buttonText}>Settings</Text>
+        <Text style={styles.buttonText} maxFontSizeMultiplier={1.2}>Settings</Text>
         </View>
       </TouchableOpacity>
       </ImageBackground>

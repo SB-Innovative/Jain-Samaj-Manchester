@@ -198,7 +198,6 @@
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 				CA97DD5B403A6752FE60EBDB /* [CP-User] [RNFB] Core Configuration */,
-				6D6DDFBA2CC078A8003E7F13 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -301,23 +300,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JainSamajMancheste/Pods-JainSamajMancheste-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		6D6DDFBA2CC078A8003E7F13 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ \"$CONFIGURATION\" == \"Debug\" ]]; then\n  if nc -w 5 -z localhost 8081 ; then\n    echo \"Metro is already running.\"\n  else\n    echo \"Starting Metro Bundler.\"\n    open $SRCROOT/../node_modules/react-native/scripts/launchPackager.command || echo \"Can't start Metro.\"\n  fi\nfi\n\n\n";
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -518,7 +500,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JainSamajMancheste/JainSamajMancheste.entitlements;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5QB68WQBP3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = JainSamajMancheste/Info.plist;
@@ -551,7 +533,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JainSamajMancheste/JainSamajMancheste.entitlements;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5QB68WQBP3;
 				INFOPLIST_FILE = JainSamajMancheste/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Jain Samaj Manchester";

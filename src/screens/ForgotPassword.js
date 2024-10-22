@@ -94,7 +94,7 @@ axios.post(url, formData, {
               </View>
               <View style={styles.footer}>
                 
-        <TextRegular text="Mobile/Email" style={styles.textLabel}/>
+        <TextRegular text="Mobile/Email" style={styles.textLabel} maxFontSizeMultiplier={1.2}/>
                 <TextInput
                   placeholder="Enter Your Mobile No. /Email Address"
           placeholderTextColor="#FFFFFF"
@@ -103,11 +103,11 @@ axios.post(url, formData, {
                   onChangeText={setEmail}
                 />
               <TouchableOpacity style={styles.button}  onPress={() => handleSendOTP()}>
-          <Text style={styles.buttonText}>{loading ? 'SENDING OTP...' : 'SEND OTP'}</Text>
+          <Text style={styles.buttonText} maxFontSizeMultiplier={1.2}>{loading ? 'SENDING OTP...' : 'SEND OTP'}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} 
        onPress={() => navigation.goBack()}>
-          <Text style={styles.buttonText}>BACK</Text>
+          <Text style={styles.buttonText} maxFontSizeMultiplier={1.2}>BACK</Text>
               </TouchableOpacity>
             </View>
                   </View>

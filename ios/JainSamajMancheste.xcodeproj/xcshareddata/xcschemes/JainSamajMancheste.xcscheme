@@ -60,13 +60,6 @@
             ReferencedContainer = "container:JainSamajMancheste.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "PATH"
-            value = "/Users/nitesh/.nvm/versions/node/v20.17.0/bin"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

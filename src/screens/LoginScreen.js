@@ -15,16 +15,18 @@ const LoginScreen = () => {
         </View>
       </View> */}
       <Image source={require('../../assets/user-icon.png')} style={styles.userIcon} />
-      <TextBold text="Login" style={styles.title} />
-      <TextRegular text="Mobile/Email" />
+      <TextBold text="Login" style={styles.title} maxFontSizeMultiplier={1.2} />
+      <TextRegular maxFontSizeMultiplier={1.2} text="Mobile/Email" />
       <TextInput
         style={styles.input}
+        maxFontSizeMultiplier={1.2}
         placeholder="Enter Your Mobile No. / Email Address"
         placeholderTextColor="#ECE5E2"
       />
       <TextRegular text="Password" />
       <TextInput
         style={styles.input}
+        maxFontSizeMultiplier={1.2}
         placeholder="Enter Your Password"
         placeholderTextColor="#ECE5E2"
         secureTextEntry

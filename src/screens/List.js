@@ -113,10 +113,10 @@ const List = ({navigation}) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.tableRow}>
-      <Text style={styles.tableCell}>{item.name +" "+item.lastname}</Text>
+      <Text style={styles.tableCell} maxFontSizeMultiplier={1.2}>{item.name +" "+item.lastname}</Text>
       {/* <Text style={styles.tableCell}>{item.age}</Text> */}
       <TouchableOpacity style={styles.tableCell} onPress={() => openDialPad(item.mobile)}>
-      <Text style={styles.phoneNumber}>{item.mobile}</Text>
+      <Text style={styles.phoneNumber} maxFontSizeMultiplier={1.2}>{item.mobile}</Text>
       </TouchableOpacity>
       <View style={styles.tableCell}>
 
@@ -153,12 +153,13 @@ const List = ({navigation}) => {
           style={styles.imageTop}
         /> */}
         {/* <Image source={{ uri: 'https://path-to-your-image.jpg' }} style={styles.image} /> */}
-        <Text style={styles.title}>Jain Samaj Manchester Directory </Text>
+        <Text style={styles.title} maxFontSizeMultiplier={1.2}>Jain Samaj Manchester Directory </Text>
       </View>
       <View style={styles.buttonContainer}>
   <ButtonCircular 
   text = {'Back'}
   style={styles.buttonText}
+  maxFontSizeMultiplier={1.2}
   handleClick={handleOk}
   linearGradient={styles.linearGradient}
   />
@@ -175,7 +176,7 @@ const List = ({navigation}) => {
     
         </View>
         
-          <Text style={styles.listButtonText}>Directory</Text>
+          <Text style={styles.listButtonText} maxFontSizeMultiplier={1.2}>Directory</Text>
 
          
         </View>
@@ -188,6 +189,7 @@ const List = ({navigation}) => {
        <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
+          maxFontSizeMultiplier={1.2}
           placeholder="Search by name"
           value={searchText}
           onChangeText={setSearchText}
@@ -201,10 +203,10 @@ const List = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.tableHeader}>
-        <Text style={styles.tableHeaderCell}>Name</Text>
+        <Text style={styles.tableHeaderCell} maxFontSizeMultiplier={1.2}>Name</Text>
         {/* <Text style={styles.tableHeaderCell}>Age</Text> */}
-        <Text style={styles.tableHeaderCell}>Mobile</Text>
-        <Text style={styles.tableHeaderCell}></Text>
+        <Text style={styles.tableHeaderCell} maxFontSizeMultiplier={1.2}>Mobile</Text>
+        <Text style={styles.tableHeaderCell} maxFontSizeMultiplier={1.2}></Text>
       </View>
       <FlatList
         data={filteredUsers}
@@ -251,7 +253,7 @@ const styles = StyleSheet.create({
   
   },
   backButtonText: {
-    fontSize: 18,
+    fontSize: 12,
     color: colors.primary,
     fontWeight: 'bold',
   },
@@ -399,6 +401,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom:5,
     alignItems:'flex-start',
+    fontSize: 12,
   },
   buttonText: {
     justifyContent:'center',
